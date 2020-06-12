@@ -30,9 +30,11 @@ export const isInsideChat = (waPage: puppeteer.Page) => {
     waPage
       .waitForFunction(
         `
-        document.getElementsByClassName('app')[0] &&
-        document.getElementsByClassName('app')[0].attributes &&
-        !!document.getElementsByClassName('app')[0].attributes.tabindex
+        document.getElementById('app') &&
+        document.getElementById('app').firstChild &&
+        document.getElementById('app').firstChild.lastChild &&
+        document.getElementById('app').firstChild.lastChild.attributes &&
+        !!document.getElementById('app').firstChild.lastChild.attributes.tabindex
         `,
         {
           timeout: 0,
